@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-const API_BASE = import.meta.env.VITE_API_BASE || 'https://resumefixeraiapi.azurewebsites.net'
+const API_BASE = 'https://resumefixerai-1.onrender.com'
 
 export default function App(){
   const [text, setText] = useState('')
@@ -18,7 +18,7 @@ export default function App(){
       const res = await fetch(`${API_BASE}/api/rewrite`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ text, jobRole })
+        body: JSON.stringify({ text, role: jobRole })
       })
       if(!res.ok){ const b = await res.text(); throw new Error(b || res.status) }
       const data = await res.json()
